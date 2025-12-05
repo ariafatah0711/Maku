@@ -1,0 +1,6 @@
+id,tanggal,jenis,kategori,jumlah,catatan
+1,2024-06-01,expense,food,15000.0,Lunch at cafe
+2,2024-06-02,income,salary,500000.0,June salary
+3,2024-06-03,expense,transport,20000.0,Taxi fare
+4,2024-06-04,expense,entertainment,75000.0,Movie tickets
+5,2024-06-05,income,freelance,120000.0,Project payment
