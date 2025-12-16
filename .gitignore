@@ -9,3 +9,5 @@ ENV/
 build/
 dist/
 *.egg-info/
+
+tmp

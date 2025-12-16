@@ -1,86 +1,88 @@
 import sys, os
 import csv
 
+# add project root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from core import Transaction, ReadConfig
+from core import Transaction, ReadConfig, transaction_to_dict, show_list_transaction
 
-def read_csv(file_path):
-    transactions = []
-    with open(file_path, mode='r', newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            Transaction_obj = Transaction(
-                id=row['id'],
-                date=row['tanggal'],
-                type=row['jenis'],
-                category=row['kategori'],
-                amount=float(row['jumlah']),
-                note=row['catatan']
-            )
-            transactions.append(Transaction_obj)
+FIELD_NAMES = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
 
-    return transactions
+# CLASS CSVHandler
+class CSVHandler:
+    def __init__(self, file_path):
+        self.file_path = file_path
 
-def write_csv(file_path, id, date, type, category, amount, note):
-    with open(file_path, mode='a', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    def read(self):
+        with open(self.file_path, mode='r', newline='', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            return [
+                Transaction(
+                    id=row['id'], date=row['tanggal'],
+                    type=row['jenis'], category=row['kategori'],
+                    amount=float(row['jumlah']), note=row['catatan']
+                ) for row in reader
+            ]
 
-        writer.writerow({
-            'id': id,
-            'tanggal': date,
-            'jenis': type,
-            'kategori': category,
-            'jumlah': amount,
-            'catatan': note
-        })
+    def write(self, transaction):
+        with open(file=self.file_path, mode='a', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=FIELD_NAMES)
+            writer.writerow(transaction_to_dict(transaction))
 
-def delete_csv(file_path, id):
-    transactions = read_csv(file_path)
-    filtered = [
-        t for t in transactions
-            if str(t.id) != str(id)
-    ]
+    def delete(self, id):
+        transactions = self.read()
+        filtered = [
+            t for t in transactions
+                if str(t.id) != str(id)
+        ]
 
-    with open(file_path, 'w', newline='', encoding='utf-8') as csvfile:
-        fieldnames = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writeheader()
+        # Renumber IDs sequentially so file keeps contiguous ids starting at 1
+        for idx, t in enumerate(filtered, start=1):
+            try:
+                t.id = idx
+            except Exception:
+                pass
 
-        for t in filtered:
-            writer.writerow({
-                'id': t.id,
-                'tanggal': t.date,
-                'jenis': t.type,
-                'kategori': t.category,
-                'jumlah': t.amount,
-                'catatan': t.note
-            })
+        with open(self.file_path, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=FIELD_NAMES)
+            writer.writeheader()
+            for t in filtered:
+                writer.writerow(transaction_to_dict(t))
 
-def show_list(transactions):
-    for t in transactions:
-        print(f"ID: {t.id}, Date: {t.date}, Type: {t.type}, Category: {t.category}, Amount: {t.amount}, Note: {t.note}")
+    def update(self, transaction):
+        transactions = self.read()
+        updated = []
+        for t in transactions:
+            if str(t.id) == str(transaction.id):
+                t.date = transaction.date
+                t.type = transaction.type
+                t.category = transaction.category
+                t.amount = transaction.amount
+                t.note = transaction.note
+            updated.append(t)
+
+        with open(self.file_path, 'w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=FIELD_NAMES)
+            writer.writeheader()
+            for t in updated: writer.writerow(transaction_to_dict(t))
 
 if __name__ == "__main__":
     __FILE_PATH__ = ReadConfig('FILE_CSV')
-    transactions = read_csv(__FILE_PATH__)
+    csv_data = CSVHandler(__FILE_PATH__)
 
     # [01] Testing Read CSV
-    print("[+] Before Write")
-    show_list(transactions)
+    print("[+] Before Write"); transactions = csv_data.read(); show_list_transaction(transactions)
 
     # [02] Testing Write CSV
-    print("\n[+] Write Data CSV - ID 999")
-    write_csv(__FILE_PATH__, 999, '2024-01-01', 'income', 'salary', 5000.0, 'January salary note')
-
+    print("\n[+] Write Data CSV - ID 999"); csv_data.write(Transaction(999, '2024-01-01', 'income', 'salary', 5000.0, 'January salary note'))
     # [03] Read again after write
-    print("\n[+] After Write")
-    transactions = read_csv(__FILE_PATH__); show_list(transactions)
+    transactions = csv_data.read(); show_list_transaction(transactions)
 
     # [04] Testing Delete CSV
-    print("\n[+] Delete Data CSV - ID 999")
-    delete_csv(__FILE_PATH__, 999)
-
+    print("\n[+] Delete Data CSV - ID 999"); csv_data.delete(999)
     # [05] Read again after delete
-    print("\n[+] After Delete")
-    transactions = read_csv(__FILE_PATH__); show_list(transactions)
+    transactions = csv_data.read(); show_list_transaction(transactions)
+
+    # [06] Testing Update CSV
+    print("\n[+] Update Data CSV - ID 1"); csv_data.update(Transaction(1, '2024-02-01', 'expense', 'groceries', 150.0, 'February groceries note'))
+    # [07] Read again after update
+    transactions = csv_data.read(); show_list_transaction(transactions)
