@@ -12,3 +12,32 @@ Maku adalah aplikasi manajemen keuangan yang dirancang khusus untuk mahasiswa un
   Nim : 0
 - Nama: ZIKRA MAHKOTA HASAN
   Nim : 0
+
+## how to setup
+1. Clone repository ini ke lokal mesin Anda.
+```bash
+git clone https://github.com/<username>/<repository>.git
+cd <repository>
+```
+
+2. Install dependencies yang diperlukan menggunakan pip.
+```bash
+pip3 install -r req.txt
+```
+
+3. running the app python
+```bash
+python3 maku.py
+```
+
+## django
+### how to setup django project with venv
+```bash
+python3 -m venv venv
+.\venv\Scripts\activate
+
+python -m django startproject web
+cd web
+pip3 install django
+python3 manage.py runserver
+```

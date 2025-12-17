@@ -11,3 +11,4 @@ dist/
 *.egg-info/
 
 tmp
+*sqlite3
