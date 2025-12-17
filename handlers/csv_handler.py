@@ -3,7 +3,7 @@ import csv
 
 # add project root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from core import Transaction, ReadConfig, transaction_to_dict, show_list_transaction
+from core import Transaction, _check_file, ReadConfig, transaction_to_dict, show_list_transaction
 
 FIELD_NAMES = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
 
@@ -11,6 +11,7 @@ FIELD_NAMES = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
 class CSVHandler:
     def __init__(self, file_path):
         self.file_path = file_path
+        _check_file(file_path)
 
     def read(self):
         with open(self.file_path, mode='r', newline='', encoding='utf-8') as csvfile:
@@ -65,6 +66,7 @@ class CSVHandler:
             writer.writeheader()
             for t in updated: writer.writerow(transaction_to_dict(t))
 
+# ======= Test Code =======
 if __name__ == "__main__":
     __FILE_PATH__ = ReadConfig('FILE_CSV')
     csv_data = CSVHandler(__FILE_PATH__)
