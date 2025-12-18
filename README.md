@@ -72,7 +72,7 @@ cd Maku
 ```
 
 2. add project python cpanel
-![alt text](images/README/image.png)
+![alt text](https://raw.githubusercontent.com/arialinux/image/refs/heads/main/image.png)
 
 3. install package
 ```bash

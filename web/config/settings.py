@@ -15,6 +15,7 @@ DATABASES = {}
 
 # Application definition
 INSTALLED_APPS = [
+    "django.contrib.staticfiles",
     "web",
     # "transactions",
 ]
@@ -24,3 +25,5 @@ TEMPLATES = [
         "APP_DIRS": True,
     },
 ]
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]

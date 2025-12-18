@@ -5,4 +5,5 @@ urlpatterns = [
     path("", index, name="home"),
     path("delete/<int:transaction_id>/", delete_transaction, name="delete"),
     path("edit/<int:transaction_id>/", edit_transaction, name="edit"),
+    path("export/", export_transactions, name="export"),
 ]

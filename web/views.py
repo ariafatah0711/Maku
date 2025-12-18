@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.http import FileResponse, Http404
 from core import TransactionLogic
 from utils import ReadAllConfig
+import os
 
 CONFIG = ReadAllConfig()
 mode = str(CONFIG["MODE"])
@@ -24,6 +26,22 @@ def index(request):
 
     transactions = logic.list_transactions()
     return render(request, "index.html", {"transactions": transactions})
+
+def export_transactions(request):
+    logic = get_logic()
+    export_dir = CONFIG.get("EXPORT_DIR", "exports")
+    try:
+        export_path = logic.export_transactions(export_dir)
+    except Exception as e:
+        return render(request, "index.html", {"transactions": logic.list_transactions(), "error": str(e)})
+
+    if os.path.exists(export_path):
+        try:
+            return FileResponse(open(export_path, "rb"), as_attachment=True, filename=os.path.basename(export_path))
+        except Exception:
+            raise Http404("Could not open exported file")
+    else:
+        raise Http404("Exported file not found")
 
 def edit_transaction(request, transaction_id):
     logic = get_logic()

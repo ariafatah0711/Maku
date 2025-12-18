@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <title>MaKu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="{% static 'favicon.png' %}">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -12,8 +14,15 @@
 
     <!-- HEADER -->
     <div class="mb-8">
-      <h1 class="text-4xl font-bold text-slate-800">MaKu 💰</h1>
-      <p class="text-slate-500">Personal finance tracker</p>
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-4xl font-bold text-slate-800">MaKu 💰</h1>
+          <p class="text-slate-500">Personal finance tracker</p>
+        </div>
+        <div class="space-x-3">
+          <a href="{% url 'export' %}" class="text-sm bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700">Export</a>
+        </div>
+      </div>
     </div>
 
     <!-- FORM -->
@@ -50,6 +59,9 @@
 
     <!-- TABLE -->
     <div class="bg-white rounded-xl shadow overflow-hidden">
+      {% if error %}
+      <div class="p-4 text-red-600">{{ error }}</div>
+      {% endif %}
       <table class="w-full text-sm">
         <thead class="bg-slate-50 text-slate-600">
           <tr>

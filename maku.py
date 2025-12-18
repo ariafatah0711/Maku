@@ -7,6 +7,7 @@ from utils import *
 CONFIG = ReadAllConfig()
 
 MODE = str(CONFIG["MODE"])
+EXPORT_DIR = str(CONFIG.get("EXPORT_DIR", "exports"))
 HOST = CONFIG.get("HOST", "127.0.0.1")
 PORT = CONFIG.get("PORT", "8000")
 
@@ -99,6 +100,17 @@ def run_cli():
                         time.sleep(1)
                     except Exception as e:
                         print(f"[X] Failed to delete: {e}")
+                        time.sleep(1)
+
+                elif user == 5 or user == '5':
+                    # Export Transactions (automatic Excel export under ./export/)
+                    try:
+                        export_path = data.export_transactions(EXPORT_DIR)
+                        print(f"\n[✔] Transactions exported successfully to {export_path}")
+                        input("[O] Press Enter to return to the main menu... ")
+                        time.sleep(0.5)
+                    except Exception as e:
+                        print(f"[X] Failed to export: {e}")
                         time.sleep(1)
 
                 elif user in ['q', 'x']:

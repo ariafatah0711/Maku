@@ -1,4 +1,6 @@
 import time
+import os
+from datetime import datetime
 from .models import Transaction
 from .util import *
 from utils import inputValidate
@@ -55,3 +57,28 @@ class TransactionLogic():
             return True
         else:
             raise ValueError(f"Transaction with ID {transaction_id} not found.")
+
+    def export_transactions(self, export_dir='exports'):
+        """Export all transactions to an Excel file under `export_dir`.
+
+        The exported filename is generated as `YYYY-MM-DD_HHMMSS.xlsx` and the
+        function returns the full path to the created file.
+        """
+        transactions = self.data.read()
+
+        # Ensure export directory exists
+        try:
+            os.makedirs(export_dir, exist_ok=True)
+        except PermissionError:
+            raise PermissionError(f"[!] Permission denied creating export directory: {export_dir}")
+
+        filename = datetime.now().strftime('%Y-%m-%d_%H%M%S.xlsx')
+        export_path = os.path.join(export_dir, filename)
+
+        # Always export to Excel
+        export_handler = ExcelHandler(export_path)
+
+        for t in transactions:
+            export_handler.write(t)
+
+        return export_path

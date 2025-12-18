@@ -34,6 +34,7 @@ def ReadAllConfig():
     return {
         'FILE_CSV': ReadConfig('FILE_CSV'),
         'FILE_EXCEL': ReadConfig('FILE_EXCEL'),
+        'EXPORT_DIR': ReadConfig('EXPORT_DIR'),
         'MODE': ReadConfig('MODE'),
         'HOST': ReadConfig('HOST'),
         'PORT': ReadConfig('PORT'),

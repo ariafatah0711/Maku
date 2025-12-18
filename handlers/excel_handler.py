@@ -16,8 +16,19 @@ def _ensure_excel(path):
 class ExcelHandler:
     def __init__(self, file_path):
         self.file_path = file_path
-        check_file(file_path)
-        _ensure_excel(file_path)
+        # Ensure parent directory exists (for exports)
+        parent = os.path.dirname(file_path)
+        if parent:
+            try:
+                os.makedirs(parent, exist_ok=True)
+            except PermissionError:
+                raise PermissionError(f"[!] Permission denied creating directory: {parent}")
+
+        # Create the excel file if missing
+        try:
+            _ensure_excel(file_path)
+        except PermissionError:
+            raise PermissionError(f"[!] Permission denied creating file: {file_path}")
 
     def _load_df(self):
         return pd.read_excel(self.file_path)

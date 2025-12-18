@@ -12,3 +12,5 @@ dist/
 
 tmp
 *sqlite3
+
+exports

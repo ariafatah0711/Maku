@@ -11,6 +11,7 @@ def show_main_menu():
     print("[02] Add Transaction")
     print("[03] Update Transaction")
     print("[04] Delete Transaction")
+    print("[05] Export Transactions")
 
 # Menampilkan daftar transaksi dalam format tabel
 def show_list_transaction(transactions):
