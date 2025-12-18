@@ -27,11 +27,26 @@ pip3 install -r req.txt
 
 3. running the app python
 ```bash
-python3 maku.py
+python3 maku.py cli
+python3 maku.py web
 ```
 
-## django
-### how to setup django project with venv
+4. ubah config (opsional)
+- buka config.cfg, dan sesuaikan config
+```INI
+# Global configuration file
+FILE_CSV = data/saku_data.csv
+FILE_EXCEL = data/saku_data.xlsx
+MODE = csv # Options: csv, excel
+
+# Web server configuration
+HOST = 0.0.0.0 # Server host
+PORT = 8000 # Server port
+```
+
+<details>
+<summary>How to setup django</summary>
+
 ```bash
 python3 -m venv venv
 .\venv\Scripts\activate
@@ -41,11 +56,45 @@ cd web
 pip3 install django
 python3 manage.py runserver
 
-# add migrations
+# add app
 python manage.py startapp transactions
 ```
+</details>
 
-## testing
+<details>
+<summary>How to Setup CPanel</summary>
+
+1. go to terminal
+```bash
+cd /home/aria.my.id
+git clone git clone https://github.com/ariafatah0711/Maku
+cd Maku
+```
+
+2. add project python cpanel
+![alt text](images/README/image.png)
+
+3. install package
+```bash
+source /home/ariamyid/virtualenv/aria.my.id/Maku/3.11/bin/activate && cd /home/ariamyid/aria.my.id/Maku
+pip3 install -r req.txt
+cat << EOF > /web/web/config/wsgi.py
+<masukan kode wsgi nya>
+EOF
+```
+
+4. restart aplikasi di cpanel
+
+</details>
+
+---
+
+## Gak Kepake Ini
+<details>
+<summary>Nyoba pake API</summary>
+
+```bash
+## testing api
 ```bash
 curl -X GET http://192.168.1.11:8000/api/transactions/
 curl -X GET http://192.168.1.11:8000/api/transactions/ | jq
@@ -69,3 +118,5 @@ curl -X PUT http://192.168.1.11:8000/api/transactions/3/ \
   }'
 curl -X DELETE http://192.168.1.11:8000/api/transactions/3/
 ```
+
+</details>
