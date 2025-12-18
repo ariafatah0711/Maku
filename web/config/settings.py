@@ -16,6 +16,8 @@ DATABASES = {}
 # Application definition
 INSTALLED_APPS = [
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
+    # APPS
     "web",
     # "transactions",
 ]

@@ -9,9 +9,9 @@ from handlers.csv_handler import CSVHandler
 from handlers.excel_handler import ExcelHandler
 
 class TransactionLogic():
-    mode = 'csv'  # default mode
+    mode = 'excel'  # default mode
 
-    def __init__(self, file_path, mode='csv'):
+    def __init__(self, file_path, mode='excel'):
         self.mode = mode
         if mode == 'csv':
             self.data = CSVHandler(file_path)

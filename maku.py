@@ -6,7 +6,7 @@ from utils import *
 
 CONFIG = ReadAllConfig()
 
-MODE = str(CONFIG["MODE"])
+MODE = str(CONFIG.get("MODE", "excel"))
 EXPORT_DIR = str(CONFIG.get("EXPORT_DIR", "exports"))
 HOST = CONFIG.get("HOST", "127.0.0.1")
 PORT = CONFIG.get("PORT", "8000")
