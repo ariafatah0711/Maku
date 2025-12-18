@@ -40,4 +40,32 @@ python -m django startproject web
 cd web
 pip3 install django
 python3 manage.py runserver
+
+# add migrations
+python manage.py startapp transactions
+```
+
+## testing
+```bash
+curl -X GET http://192.168.1.11:8000/api/transactions/
+curl -X GET http://192.168.1.11:8000/api/transactions/ | jq
+curl -X POST http://192.168.1.11:8000/api/transactions/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "date": "2024-12-18",
+    "type": "income",
+    "category": "salary",
+    "amount": 5000,
+    "note": "Gaji Desember"
+  }'
+curl -X PUT http://192.168.1.11:8000/api/transactions/3/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "date": "2024-12-19",
+    "type": "expense",
+    "category": "food",
+    "amount": 150,
+    "note": "Makan siang"
+  }'
+curl -X DELETE http://192.168.1.11:8000/api/transactions/3/
 ```

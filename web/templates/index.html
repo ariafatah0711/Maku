@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>MaKu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen py-10">
+  <div class="max-w-5xl mx-auto px-4">
+
+    <!-- HEADER -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-slate-800">MaKu 💰</h1>
+      <p class="text-slate-500">Personal finance tracker</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="bg-white rounded-xl shadow p-6 mb-10">
+      <h2 class="text-lg font-semibold text-slate-700 mb-4">Tambah Transaksi</h2>
+
+      <form method="post" class="grid grid-cols-1 md:grid-cols-6 gap-4">
+        {% csrf_token %}
+
+        <input type="date" name="date" required
+          class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+
+        <select name="type"
+          class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+
+        <input type="text" name="category" placeholder="Kategori"
+          class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+
+        <input type="number" name="amount" placeholder="Jumlah" required
+          class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+
+        <input type="text" name="note" placeholder="Catatan"
+          class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+
+        <button type="submit"
+          class="md:col-span-1 bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition">
+          Tambah
+        </button>
+      </form>
+    </div>
+
+    <!-- TABLE -->
+    <div class="bg-white rounded-xl shadow overflow-hidden">
+      <table class="w-full text-sm">
+        <thead class="bg-slate-50 text-slate-600">
+          <tr>
+            <th class="px-4 py-3 text-left">Tanggal</th>
+            <th class="px-4 py-3 text-left">Jenis</th>
+            <th class="px-4 py-3 text-left">Kategori</th>
+            <th class="px-4 py-3 text-right">Jumlah</th>
+            <th class="px-4 py-3 text-left">Catatan</th>
+            <th class="px-4 py-3 text-center">Aksi</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for t in transactions %}
+          <tr class="border-t hover:bg-slate-50">
+            <td class="px-4 py-3">{{ t.date }}</td>
+
+            <td class="px-4 py-3">
+              {% if t.type == "income" %}
+                <span class="text-green-600 font-medium">Income</span>
+              {% else %}
+                <span class="text-red-600 font-medium">Expense</span>
+              {% endif %}
+            </td>
+
+            <td class="px-4 py-3">{{ t.category|default:"-" }}</td>
+
+            <td class="px-4 py-3 text-right font-medium">
+              Rp {{ t.amount|floatformat:0 }}
+            </td>
+
+            <td class="px-4 py-3 text-slate-500">
+              {{ t.note|default:"-" }}
+            </td>
+            <td>
+                <a href="{% url 'edit' t.id %}">✏️ Edit</a> |
+                <a href="{% url 'delete' t.id %}" onclick="return confirm('Delete?')">
+                    🗑 Delete
+                </a>
+            </td>
+            </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="py-6 text-center text-slate-400">
+              Belum ada transaksi
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>

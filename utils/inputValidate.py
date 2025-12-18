@@ -3,9 +3,10 @@ class inputValidate(Exception):
     def __call__(self):
         pass
 
-    def date(self, prompt="Date (YYYY-MM-DD): "):
+    def date(self, prompt="Date (YYYY-MM-DD): ", allow_blank=False):
         while True:
             date_str = input(prompt)
+            if allow_blank and date_str.strip() == "": return None
             if date_str.lower() == "now":
                 return datetime.now().strftime("%Y-%m-%d")
             try:
@@ -14,19 +15,22 @@ class inputValidate(Exception):
             except ValueError:
                 print("[X] Invalid date format! Use YYYY-MM-DD")
 
-    def type(self, prompt="Type (Income/Expense): "):
+    def type(self, prompt="Type (Income/Expense): ", allow_blank=False):
         while True:
             t = input(prompt).capitalize()
+            if allow_blank and t.strip() == "": return None
             if t in ["I", "E"]:
                 t = "Income" if t == "I" else "Expense"
             if t in ["Income", "Expense"]:
                 return t
             print("[X] Type must be Income or Expense")
 
-    def float(self, prompt="Amount: "):
+    def float(self, prompt="Amount: ", allow_blank=False):
         while True:
             try:
-                return float(input(prompt))
+                value = input(prompt)
+                if allow_blank and value.strip() == "": return None
+                return float(value)
             except ValueError:
                 print("[X] Amount must be a number")
 

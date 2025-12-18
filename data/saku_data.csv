@@ -1,14 +1,4 @@
 id,tanggal,jenis,kategori,jumlah,catatan
-1,2024-02-01,expense,groceries,150.0,February groceries note
-2,2024-06-04,expense,entertainment,75000.0,Movie tickets
-3,2024-06-05,income,freelance,120000.0,Project payment
-4,2020-12-31,Income,a,10000000.0,hslo
-5,2025-12-17,Income,,100000.0,
-6,2025-12-17,Expense,,19999.0,a
-7,2025-12-17,Income,,10000.0,
-8,2025-12-17,Income,,10000.0,nasgor
-9,2025-12-17,Income,,10000.0,a
-10,2000-11-10,Income,,10000.0,nice
-11,2025-12-17,Income,,10000.0,a
-12,2025-12-17,Expense,a,1e+55,
-13,2025-12-17,Income,deni,99.0,deni
+1,2024-06-04,expense,entertainment,75000.0,Movie tickets
+2,2025-12-17,income,a,10000.0,
+3,2025-12-18,expense,nasgor,15000,makan nasgor

@@ -3,7 +3,9 @@ import pandas as pd
 
 # add project root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from core import Transaction, _check_file, ReadConfig, show_list_transaction
+from core.models import Transaction
+from core.util import check_file
+from utils import ReadConfig, show_list_transaction
 
 FIELD_NAMES = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
 
@@ -14,7 +16,7 @@ def _ensure_excel(path):
 class ExcelHandler:
     def __init__(self, file_path):
         self.file_path = file_path
-        _check_file(file_path)
+        check_file(file_path)
         _ensure_excel(file_path)
 
     def _load_df(self):
@@ -30,7 +32,7 @@ class ExcelHandler:
                 date=row.tanggal,
                 type=row.jenis,
                 category=row.kategori,
-                amount=float(row.jumlah or 0),
+                amount=(row.jumlah or 0),
                 note=row.catatan or ''
             )
             for row in self._load_df().itertuples()
