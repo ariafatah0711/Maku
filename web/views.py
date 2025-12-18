@@ -5,8 +5,9 @@ from utils import ReadAllConfig
 import os
 
 CONFIG = ReadAllConfig()
-mode = str(CONFIG["MODE"])
+mode = str(CONFIG.get("MODE", "excel"))
 file_path = CONFIG["FILE_CSV"] if mode == "csv" else CONFIG["FILE_EXCEL"]
+export_dir = str(CONFIG.get("EXPORT_DIR", "exports"))
 
 def get_logic():
     return TransactionLogic(file_path, mode)
@@ -29,7 +30,7 @@ def index(request):
 
 def export_transactions(request):
     logic = get_logic()
-    export_dir = CONFIG.get("EXPORT_DIR", "exports")
+
     try:
         export_path = logic.export_transactions(export_dir)
     except Exception as e:
