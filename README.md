@@ -20,24 +20,31 @@ git clone https://github.com/<username>/<repository>.git
 cd <repository>
 ```
 
-2. Install dependencies yang diperlukan menggunakan pip.
+2. Buat virtual environment dan aktifkan. (opsional tapi disarankan)
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
+
+3. Install dependencies yang diperlukan menggunakan pip.s
 ```bash
 pip3 install -r req.txt
 ```
 
-3. running the app python
+4. running the app python
 ```bash
 python3 maku.py cli
 python3 maku.py web
 ```
 
-4. ubah config (opsional)
+5. ubah config (opsional)
 - buka config.cfg, dan sesuaikan config
 ```INI
 # Global configuration file
-FILE_CSV = data/saku_data.csv
-FILE_EXCEL = data/saku_data.xlsx
+FILE_CSV = _data/saku_data.csv
+FILE_EXCEL = _data/saku_data.xlsx
 MODE = csv # Options: csv, excel
+EXPORT_DIR = _exports # Directory for exported files
 
 # Web server configuration
 HOST = 0.0.0.0 # Server host
