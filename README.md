@@ -43,7 +43,7 @@ python3 maku.py web
 # Global configuration file
 FILE_CSV = _data/saku_data.csv
 FILE_EXCEL = _data/saku_data.xlsx
-MODE = csv # Options: csv, excel
+MODE = excel # Options: csv, excel
 EXPORT_DIR = _exports # Directory for exported files
 
 # Web server configuration
