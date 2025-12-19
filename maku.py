@@ -2,7 +2,7 @@ import sys, time, subprocess
 
 # add project root
 from core import *
-from utils import *
+from cli import *
 
 CONFIG = ReadAllConfig()
 

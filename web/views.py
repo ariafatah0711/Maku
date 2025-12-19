@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import FileResponse, Http404
-from core import TransactionLogic
-from utils import ReadAllConfig
+from core import TransactionLogic, ReadAllConfig
 import os
 
 CONFIG = ReadAllConfig()

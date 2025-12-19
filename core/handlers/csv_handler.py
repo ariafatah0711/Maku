@@ -4,16 +4,36 @@ import csv
 # add project root
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from core.models import Transaction
-from core.util import check_file, transaction_to_dict
-from utils import ReadConfig, show_list_transaction
+from core.utils import transaction_to_dict
+from core.readConfig import ReadConfig
+from cli import show_list_transaction
 
 FIELD_NAMES = ['id', 'tanggal', 'jenis', 'kategori', 'jumlah', 'catatan']
+
+def _ensure_csv(path):
+    if not os.path.exists(path):
+        with open(path, mode='w', newline='', encoding='utf-8') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=FIELD_NAMES)
+            writer.writeheader()
 
 # CLASS CSVHandler
 class CSVHandler:
     def __init__(self, file_path):
         self.file_path = file_path
-        check_file(file_path)
+        # Ensure parent directory exists (for exports)
+        parent = os.path.dirname(file_path)
+        if parent:
+            try:
+                os.makedirs(parent, exist_ok=True)
+            except PermissionError:
+                raise PermissionError(f"[!] Permission denied creating directory: {parent}")
+
+        # Create the excel file if missing
+        try:
+            _ensure_csv(file_path)
+        except PermissionError:
+            raise PermissionError(f"[!] Permission denied creating file: {file_path}")
+
 
     def read(self):
         with open(self.file_path, mode='r', newline='', encoding='utf-8') as csvfile:

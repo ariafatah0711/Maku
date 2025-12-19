@@ -2,11 +2,10 @@ import time
 import os
 from datetime import datetime
 from .models import Transaction
-from .util import *
-from utils import inputValidate
+from .utils import *
+from cli import inputValidate
 
-from handlers.csv_handler import CSVHandler
-from handlers.excel_handler import ExcelHandler
+from .handlers import CSVHandler, ExcelHandler
 
 class TransactionLogic():
     mode = 'excel'  # default mode

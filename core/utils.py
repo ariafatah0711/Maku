@@ -1,9 +1,3 @@
-import os
-
-def check_file(path):
-    if not os.path.exists(path):
-        raise FileNotFoundError(f"[!] File tidak ditemukan: {path}")
-
 # Additional utility functions
 def transaction_to_dict(t):
     return {
