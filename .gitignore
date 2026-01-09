@@ -17,3 +17,5 @@ exports
 
 _data/
 _exports/
+
+makucli/*

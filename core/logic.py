@@ -5,23 +5,27 @@ from .models import Transaction
 from .utils import *
 from cli import inputValidate
 
-from .handlers import CSVHandler, ExcelHandler
+from .handlers import ExcelHandler
 
 class TransactionLogic():
-    mode = 'excel'  # default mode
-
     def __init__(self, file_path, mode='excel'):
-        self.mode = mode
-        if mode == 'csv':
-            self.data = CSVHandler(file_path)
-        elif mode == 'excel':
-            self.data = ExcelHandler(file_path)
-        else:
-            raise ValueError(f"Unsupported mode: {mode}")
+        self.data = ExcelHandler(file_path)
 
     def list_transactions(self):
         """Return all transactions from the file CSV or Excel."""
         return self.data.read()
+
+    def get_totals(self):
+        """Calculate total income and expense."""
+        transactions = self.data.read()
+        total_income = sum(float(t.amount) for t in transactions if str(t.type).lower().strip() == 'income')
+        total_expense = sum(float(t.amount) for t in transactions if str(t.type).lower().strip() == 'expense')
+        balance = total_income - total_expense
+        return {
+            'total_income': total_income,
+            'total_expense': total_expense,
+            'balance': balance
+        }
 
     def add_transaction(self, date, type, category, amount, note):
         """Add a new transaction to the file CSV or Excel. All fields must be provided."""

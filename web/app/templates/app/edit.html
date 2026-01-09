@@ -1,36 +1,26 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Edit Transaksi - MaKu</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{% static 'favicon.png' %}">
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+{% extends "base.html" %}
+{% load humanize %}
 
-<body class="bg-slate-100 min-h-screen py-10">
-  <div class="max-w-xl mx-auto px-4">
+{% block title %}Edit Transaksi - MaKu{% endblock %}
 
-    <!-- HEADER -->
+{% block content %}
+  <div class="max-w-xl mx-auto">
+
     <div class="mb-6">
       <h1 class="text-3xl font-bold text-slate-800">Edit Transaksi ✏️</h1>
       <p class="text-slate-500 text-sm">Perbarui data transaksi</p>
     </div>
 
-    <!-- FORM CARD -->
     <div class="bg-white rounded-xl shadow p-6">
       <form method="post" class="grid grid-cols-1 gap-4">
         {% csrf_token %}
 
-        <!-- Tanggal -->
         <div>
           <label class="text-sm text-slate-600">Tanggal</label>
           <input type="date" name="date" value="{{ transaction.date }}" required
             class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- Jenis -->
         <div>
           <label class="text-sm text-slate-600">Jenis</label>
           <select name="type"
@@ -44,30 +34,26 @@
           </select>
         </div>
 
-        <!-- Kategori -->
         <div>
           <label class="text-sm text-slate-600">Kategori</label>
           <input type="text" name="category" value="{{ transaction.category }}"
             class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- Jumlah -->
         <div>
           <label class="text-sm text-slate-600">Jumlah</label>
           <input type="number" name="amount" value="{{ transaction.amount }}" required
             class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" min="0" step="1">
         </div>
 
-        <!-- Catatan -->
         <div>
           <label class="text-sm text-slate-600">Catatan</label>
           <input type="text" name="note" value="{{ transaction.note }}"
             class="w-full border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- ACTIONS -->
         <div class="flex justify-between items-center pt-4">
-          <a href="{% url 'home' %}"
+          <a href="{% url 'app:app' %}"
              class="text-slate-500 hover:text-slate-700 text-sm">
             ← Batal
           </a>
@@ -81,5 +67,4 @@
     </div>
 
   </div>
-</body>
-</html>
+{% endblock %}

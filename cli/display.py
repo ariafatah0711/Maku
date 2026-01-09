@@ -13,6 +13,24 @@ def show_main_menu():
     print("[04] Delete Transaction")
     print("[05] Export Transactions")
 
+def show_summary(totals):
+    """Display summary with totals."""
+    print("\n" + "=" * 85)
+    print("SUMMARY".center(85))
+    print("=" * 85)
+
+    def format_rupiah(amount):
+        try:
+            amt = float(amount)
+        except Exception:
+            return str(amount)
+        return "Rp {:,.0f}".format(amt).replace(",", ".")
+
+    print(f"Total Pemasukan (Income)   : {format_rupiah(totals['total_income'])}")
+    print(f"Total Pengeluaran (Expense): {format_rupiah(totals['total_expense'])}")
+    print(f"Saldo (Balance)            : {format_rupiah(totals['balance'])}")
+    print("=" * 85 + "\n")
+
 # Menampilkan daftar transaksi dalam format tabel
 def show_list_transaction(transactions):
     if not transactions:

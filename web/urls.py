@@ -1,9 +1,7 @@
 from django.urls import path
-from .views import *
+from .views import home, contact
 
 urlpatterns = [
-    path("", index, name="home"),
-    path("delete/<int:transaction_id>/", delete_transaction, name="delete"),
-    path("edit/<int:transaction_id>/", edit_transaction, name="edit"),
-    path("export/", export_transactions, name="export"),
+    path("", home, name="home"),
+    path("contact/", contact, name="contact"),
 ]

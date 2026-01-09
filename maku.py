@@ -6,18 +6,16 @@ from cli import *
 
 CONFIG = ReadAllConfig()
 
-MODE = str(CONFIG.get("MODE", "excel"))
+FILE_EXCEL = CONFIG["FILE_EXCEL"]
 EXPORT_DIR = str(CONFIG.get("EXPORT_DIR", "exports"))
 HOST = CONFIG.get("HOST", "127.0.0.1")
 PORT = CONFIG.get("PORT", "8000")
 
-file_path = CONFIG["FILE_CSV"] if MODE == 'csv' else CONFIG["FILE_EXCEL"]
-
-data = TransactionLogic(file_path, MODE)
+data = TransactionLogic(FILE_EXCEL, "excel")
 
 def run_web():
     show_header("Maku - Mahasiswa Keuangan (Web Mode)")
-    print(f"[i] Mode: {MODE.upper()} | File: {file_path}")
+    print(f"[i] File: {FILE_EXCEL}")
     print("[i] Starting Django web server...")
     try:
         subprocess.run([sys.executable, "web/manage.py", "runserver", f"{HOST}:{PORT}"]
@@ -33,7 +31,7 @@ def run_cli():
     try:
         while True:
             show_header("Maku - Mahasiswa Keuangan (CLI Mode)")
-            print(f"[i] Mode: {MODE.upper()} | File: {file_path}\n")
+            print(f"[i] File: {FILE_EXCEL}\n")
             show_main_menu()
             time.sleep(0.2)
             user = input("\n[?] Select an option (q/x to exit) \t\t: ")
@@ -42,8 +40,10 @@ def run_cli():
                 if user == 1 or user == '1':
                     # List Transactions
                     transactions = data.list_transactions()
+                    totals = data.get_totals()
                     show_header("List of Transactions")
                     show_list_transaction(transactions)
+                    show_summary(totals)
                     input("\n[O] Press Enter to return to the main menu... ")
                     time.sleep(0.3)
 

@@ -8,6 +8,6 @@ def health(request):
 
 urlpatterns = [
     path("health/", health),                            # health check endpoint
-    path("", include("web.urls")),                      # root page
-    # path("api/", include("transactions.urls")),       # API endpoints
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("", include("web.urls")),                      # web app (home, contact)
+    path("app/", include("app.urls")),                  # app module (transactions)
+]

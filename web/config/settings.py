@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "maku-secret-2025"
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 DEBUG = True
 
 # URL Configuration
@@ -20,6 +20,7 @@ INSTALLED_APPS = [
 
     # APPS
     "web",
+    "app"
 ]
 TEMPLATES = [
     {
