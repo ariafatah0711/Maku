@@ -25,7 +25,7 @@ def app(request):
 
     transactions = list(reversed(logic.list_transactions()))
     totals = logic.get_totals()
-    return render(request, "app/app.html", {"transactions": transactions, "totals": totals})
+    return render(request, "app.html", {"transactions": transactions, "totals": totals})
 
 def export_transactions(request):
     logic = get_logic()
@@ -66,7 +66,7 @@ def edit_transaction(request, transaction_id):
         )
         return redirect("app:app")
 
-    return render(request, "app/edit.html", {"transaction": transaction})
+    return render(request, "edit.html", {"transaction": transaction})
 
 def delete_transaction(request, transaction_id):
     logic = get_logic()

@@ -1,6 +1,8 @@
 # MaKu - Mahasiswa Keuangan
 Maku adalah aplikasi manajemen keuangan yang dirancang khusus untuk mahasiswa universitas. Aplikasi ini membantu mahasiswa melacak pendapatan, pengeluaran, dan tabungan mereka untuk mengelola keuangan dengan lebih baik selama perjalanan akademis mereka. dibuat dengan Python dan Django Framework.
 
+[DEMO](http://s1.ariaf.my.id:20000) - [ARCHITECTURE.md](./ARCHITECTURE.md)
+
 ## Anggota Kelompok
 - Nama: Aria Fatah Anom
   Nim : 0
