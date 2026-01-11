@@ -1,9 +1,5 @@
-{% extends "base.html" %}
-{% load humanize %}
-
-{% block title %}App - MaKu{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load humanize %} {% block title %}App -
+MaKu{%endblock %} {% block content %}
 
 <div class="max-w-5xl mx-auto">
   <!-- HEADER -->
@@ -11,7 +7,9 @@
     <h1 class="text-4xl font-bold text-slate-800 mb-2">Manajemen Transaksi</h1>
     <div class="flex justify-between items-center">
       <p class="text-slate-500">Catat dan kelola transaksi keuangan Anda</p>
-      <a href="{% url 'app:export' %}" class="text-sm bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium">
+      <a
+        href="{% url 'app:export' %}"
+        class="text-sm bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium">
         📥 Export
       </a>
     </div>
@@ -21,33 +19,46 @@
   {% if totals %}
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
     <!-- Total Income -->
-    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow p-6 border-l-4 border-green-600">
+    <div
+      class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow p-6 border-l-4 border-green-600">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-sm text-green-600 font-medium">Total Pemasukan</p>
-          <h3 class="text-2xl font-bold text-green-700 mt-1">Rp {{ totals.total_income|intcomma }}</h3>
+          <h3 class="text-2xl font-bold text-green-700 mt-1">
+            Rp {{ totals.total_income|intcomma }}
+          </h3>
         </div>
         <div class="text-3xl">📈</div>
       </div>
     </div>
 
     <!-- Total Expense -->
-    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow p-6 border-l-4 border-red-600">
+    <div
+      class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow p-6 border-l-4 border-red-600">
       <div class="flex justify-between items-start">
         <div>
           <p class="text-sm text-red-600 font-medium">Total Pengeluaran</p>
-          <h3 class="text-2xl font-bold text-red-700 mt-1">Rp {{ totals.total_expense|intcomma }}</h3>
+          <h3 class="text-2xl font-bold text-red-700 mt-1">
+            Rp {{ totals.total_expense|intcomma }}
+          </h3>
         </div>
         <div class="text-3xl">📉</div>
       </div>
     </div>
 
     <!-- Balance -->
-    <div class="bg-gradient-to-br {% if totals.balance >= 0 %}from-blue-50 to-blue-100{% else %}from-orange-50 to-orange-100{% endif %} rounded-xl shadow p-6 border-l-4 {% if totals.balance >= 0 %}border-blue-600{% else %}border-orange-600{% endif %}">
+    <div
+      class="bg-gradient-to-br {% if totals.balance >= 0 %}from-blue-50 to-blue-100{% else %}from-orange-50 to-orange-100{% endif %} rounded-xl shadow p-6 border-l-4 {% if totals.balance >= 0 %}border-blue-600{% else %}border-orange-600{% endif %}">
       <div class="flex justify-between items-start">
         <div>
-          <p class="text-sm {% if totals.balance >= 0 %}text-blue-600{% else %}text-orange-600{% endif %} font-medium">Saldo</p>
-          <h3 class="text-2xl font-bold {% if totals.balance >= 0 %}text-blue-700{% else %}text-orange-700{% endif %} mt-1">Rp {{ totals.balance|intcomma }}</h3>
+          <p
+            class="text-sm {% if totals.balance >= 0 %}text-blue-600{% else %}text-orange-600{% endif %} font-medium">
+            Saldo
+          </p>
+          <h3
+            class="text-2xl font-bold {% if totals.balance >= 0 %}text-blue-700{% else %}text-orange-700{% endif %} mt-1">
+            Rp {{ totals.balance|intcomma }}
+          </h3>
         </div>
         <div class="text-3xl">💰</div>
       </div>
@@ -62,25 +73,40 @@
     <form method="post" class="grid grid-cols-1 md:grid-cols-6 gap-4">
       {% csrf_token %}
 
-      <input type="date" name="date" required
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+      <input
+        type="date"
+        name="date"
+        required
+        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
 
-      <select name="type"
+      <select
+        name="type"
         class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
 
-      <input type="text" name="category" placeholder="Kategori"
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+      <input
+        type="text"
+        name="category"
+        placeholder="Kategori"
+        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
 
-      <input type="number" name="amount" placeholder="Jumlah" required
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+      <input
+        type="number"
+        name="amount"
+        placeholder="Jumlah"
+        required
+        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
 
-      <input type="text" name="note" placeholder="Catatan"
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+      <input
+        type="text"
+        name="note"
+        placeholder="Catatan"
+        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
 
-      <button type="submit"
+      <button
+        type="submit"
         class="md:col-span-1 bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition font-medium">
         Tambah
       </button>
@@ -111,9 +137,9 @@
 
           <td class="px-4 py-3">
             {% if t.type == "income" %}
-              <span class="text-green-600 font-medium">Income</span>
+            <span class="text-green-600 font-medium">Income</span>
             {% else %}
-              <span class="text-red-600 font-medium">Expense</span>
+            <span class="text-red-600 font-medium">Expense</span>
             {% endif %}
           </td>
 
@@ -123,12 +149,19 @@
             Rp {{ t.amount|intcomma }}
           </td>
 
-          <td class="px-4 py-3 text-slate-500">
-            {{ t.note|default:"-" }}
-          </td>
+          <td class="px-4 py-3 text-slate-500">{{ t.note|default:"-" }}</td>
           <td class="px-4 py-3 text-center space-x-2">
-            <a href="{% url 'app:edit' t.id %}" class="text-blue-600 hover:text-blue-800">✏️</a>
-            <a href="{% url 'app:delete' t.id %}" onclick="return confirm('Hapus transaksi ini?')" class="text-red-600 hover:text-red-800">🗑</a>
+            <a
+              href="{% url 'app:edit' t.id %}"
+              class="text-blue-600 hover:text-blue-800"
+              >✏️</a
+            >
+            <a
+              href="{% url 'app:delete' t.id %}"
+              onclick="return confirm('Hapus transaksi ini?')"
+              class="text-red-600 hover:text-red-800"
+              >🗑</a
+            >
           </td>
         </tr>
         {% empty %}

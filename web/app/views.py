@@ -23,7 +23,7 @@ def app(request):
         )
         return redirect("app:app")
 
-    transactions = logic.list_transactions()
+    transactions = list(reversed(logic.list_transactions()))
     totals = logic.get_totals()
     return render(request, "app/app.html", {"transactions": transactions, "totals": totals})
 

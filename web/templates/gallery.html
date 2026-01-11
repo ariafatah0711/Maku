@@ -1,0 +1,64 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div
+  class="bg-gradient-to-br from-blue-50 via-slate-100 to-purple-50 min-h-screen py-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <!-- HEADER -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-extrabold text-slate-800 mb-2">
+        Gallery Kegiatan 📸
+      </h1>
+      <p class="text-slate-500">Dokumentasi proses pengembangan project MaKu</p>
+    </div>
+
+    <!-- GALLERY GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- ITEM -->
+      <div
+        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+        <img
+          src="{% static 'components/images/group.jpg' %}"
+          alt="Diskusi Tim"
+          class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+        <div class="p-4">
+          <h3 class="font-semibold text-slate-800">Diskusi Tim</h3>
+          <p class="text-sm text-slate-500 mt-1">
+            Brainstorming fitur dan konsep aplikasi
+          </p>
+        </div>
+      </div>
+
+      <!-- ITEM -->
+      <div
+        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+        <img
+          src="{% static 'components/images/coding.jpg' %}"
+          alt="Coding Session"
+          class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+        <div class="p-4">
+          <h3 class="font-semibold text-slate-800">Coding Session</h3>
+          <p class="text-sm text-slate-500 mt-1">
+            Implementasi fitur transaksi dan UI
+          </p>
+        </div>
+      </div>
+
+      <!-- ITEM -->
+      <div
+        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden">
+        <img
+          src="{% static 'components/images/testing.jpg' %}"
+          alt="Testing Aplikasi"
+          class="w-full h-48 object-cover group-hover:scale-105 transition duration-300" />
+        <div class="p-4">
+          <h3 class="font-semibold text-slate-800">Testing Aplikasi</h3>
+          <p class="text-sm text-slate-500 mt-1">
+            Uji coba fitur dan perbaikan bug
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
