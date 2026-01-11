@@ -1,15 +1,15 @@
 {% extends "base.html" %} {% load humanize %} {% block title %}App -
 MaKu{%endblock %} {% block content %}
 
-<div class="max-w-5xl mx-auto">
+<div class="max-w-5xl mx-auto px-4">
   <!-- HEADER -->
-  <div class="mb-8">
-    <h1 class="text-4xl font-bold text-slate-800 mb-2">Manajemen Transaksi</h1>
-    <div class="flex justify-between items-center">
-      <p class="text-slate-500">Catat dan kelola transaksi keuangan Anda</p>
+  <div class="mb-6 sm:mb-8 animate-fade-in-down">
+    <h1 class="text-2xl sm:text-4xl font-bold text-slate-800 mb-2">Manajemen Transaksi</h1>
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
+      <p class="text-xs sm:text-base text-slate-500">Catat dan kelola transaksi keuangan Anda</p>
       <a
         href="{% url 'app:export' %}"
-        class="text-sm bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium">
+        class="text-xs sm:text-sm bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-green-700 font-medium transition transform hover:scale-105">
         📥 Export
       </a>
     </div>
@@ -17,71 +17,71 @@ MaKu{%endblock %} {% block content %}
 
   <!-- SUMMARY CARDS -->
   {% if totals %}
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8 animate-stagger">
     <!-- Total Income -->
     <div
-      class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow p-6 border-l-4 border-green-600">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-sm text-green-600 font-medium">Total Pemasukan</p>
-          <h3 class="text-2xl font-bold text-green-700 mt-1">
+      class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow p-4 sm:p-6 border-l-4 border-green-600 transition transform hover:scale-105 hover:shadow-lg">
+      <div class="flex items-start justify-between gap-2 sm:gap-3">
+        <div class="flex-1 min-w-0">
+          <p class="text-xs sm:text-sm text-green-600 font-medium">Total Pemasukan</p>
+          <h3 class="text-sm sm:text-lg lg:text-xl font-bold text-green-700 mt-1 sm:mt-2 break-words">
             Rp {{ totals.total_income|intcomma }}
           </h3>
         </div>
-        <div class="text-3xl">📈</div>
+        <div class="text-xl sm:text-2xl lg:text-3xl flex-shrink-0">📈</div>
       </div>
     </div>
 
     <!-- Total Expense -->
     <div
-      class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow p-6 border-l-4 border-red-600">
-      <div class="flex justify-between items-start">
-        <div>
-          <p class="text-sm text-red-600 font-medium">Total Pengeluaran</p>
-          <h3 class="text-2xl font-bold text-red-700 mt-1">
+      class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl shadow p-4 sm:p-6 border-l-4 border-red-600 transition transform hover:scale-105 hover:shadow-lg">
+      <div class="flex items-start justify-between gap-2 sm:gap-3">
+        <div class="flex-1 min-w-0">
+          <p class="text-xs sm:text-sm text-red-600 font-medium">Total Pengeluaran</p>
+          <h3 class="text-sm sm:text-lg lg:text-xl font-bold text-red-700 mt-1 sm:mt-2 break-words">
             Rp {{ totals.total_expense|intcomma }}
           </h3>
         </div>
-        <div class="text-3xl">📉</div>
+        <div class="text-xl sm:text-2xl lg:text-3xl flex-shrink-0">📉</div>
       </div>
     </div>
 
     <!-- Balance -->
     <div
-      class="bg-gradient-to-br {% if totals.balance >= 0 %}from-blue-50 to-blue-100{% else %}from-orange-50 to-orange-100{% endif %} rounded-xl shadow p-6 border-l-4 {% if totals.balance >= 0 %}border-blue-600{% else %}border-orange-600{% endif %}">
-      <div class="flex justify-between items-start">
-        <div>
+      class="bg-gradient-to-br {% if totals.balance >= 0 %}from-blue-50 to-blue-100{% else %}from-orange-50 to-orange-100{% endif %} rounded-xl shadow p-4 sm:p-6 border-l-4 {% if totals.balance >= 0 %}border-blue-600{% else %}border-orange-600{% endif %} transition transform hover:scale-105 hover:shadow-lg">
+      <div class="flex items-start justify-between gap-2 sm:gap-3">
+        <div class="flex-1 min-w-0">
           <p
-            class="text-sm {% if totals.balance >= 0 %}text-blue-600{% else %}text-orange-600{% endif %} font-medium">
+            class="text-xs sm:text-sm {% if totals.balance >= 0 %}text-blue-600{% else %}text-orange-600{% endif %} font-medium">
             Saldo
           </p>
           <h3
-            class="text-2xl font-bold {% if totals.balance >= 0 %}text-blue-700{% else %}text-orange-700{% endif %} mt-1">
+            class="text-sm sm:text-lg lg:text-xl font-bold {% if totals.balance >= 0 %}text-blue-700{% else %}text-orange-700{% endif %} mt-1 sm:mt-2 break-words">
             Rp {{ totals.balance|intcomma }}
           </h3>
         </div>
-        <div class="text-3xl">💰</div>
+        <div class="text-xl sm:text-2xl lg:text-3xl flex-shrink-0">💰</div>
       </div>
     </div>
   </div>
   {% endif %}
 
   <!-- FORM -->
-  <div class="bg-white rounded-xl shadow p-6 mb-10">
-    <h2 class="text-lg font-semibold text-slate-700 mb-4">Tambah Transaksi</h2>
+  <div class="bg-white rounded-xl shadow p-4 sm:p-6 mb-6 sm:mb-10 animate-fade-in-up">
+    <h2 class="text-base sm:text-lg font-semibold text-slate-700 mb-3 sm:mb-4">Tambah Transaksi</h2>
 
-    <form method="post" class="grid grid-cols-1 md:grid-cols-6 gap-4">
+    <form method="post" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2 sm:gap-4">
       {% csrf_token %}
 
       <input
         type="date"
         name="date"
         required
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
+        class="sm:col-span-1 border rounded-lg px-2 sm:px-3 py-2 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 transition" />
 
       <select
         name="type"
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500">
+        class="sm:col-span-1 border rounded-lg px-2 sm:px-3 py-2 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 transition">
         <option value="income">Income</option>
         <option value="expense">Expense</option>
       </select>
@@ -90,83 +90,83 @@ MaKu{%endblock %} {% block content %}
         type="text"
         name="category"
         placeholder="Kategori"
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
+        class="sm:col-span-1 border rounded-lg px-2 sm:px-3 py-2 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 transition" />
 
       <input
         type="number"
         name="amount"
         placeholder="Jumlah"
         required
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
+        class="sm:col-span-1 border rounded-lg px-2 sm:px-3 py-2 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 transition" />
 
       <input
         type="text"
         name="note"
         placeholder="Catatan"
-        class="md:col-span-1 border rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500" />
+        class="sm:col-span-1 border rounded-lg px-2 sm:px-3 py-2 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 transition" />
 
       <button
         type="submit"
-        class="md:col-span-1 bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition font-medium">
+        class="sm:col-span-1 bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700 transition font-medium text-xs sm:text-sm transform hover:scale-105">
         Tambah
       </button>
     </form>
   </div>
 
   <!-- TABLE -->
-  <div class="bg-white rounded-xl shadow overflow-hidden">
+  <div class="bg-white rounded-xl shadow overflow-x-auto animate-fade-in">
     {% if error %}
-    <div class="p-4 text-red-600 font-medium">{{ error }}</div>
+    <div class="p-3 sm:p-4 text-red-600 font-medium text-xs sm:text-sm">{{ error }}</div>
     {% endif %}
-    <table class="w-full text-sm">
+    <table class="w-full text-xs sm:text-sm">
       <thead class="bg-slate-50 text-slate-600">
         <tr>
-          <th class="px-4 py-3 text-left">Tanggal</th>
-          <th class="px-4 py-3 text-left">Jenis</th>
-          <th class="px-4 py-3 text-left">Kategori</th>
-          <th class="px-4 py-3 text-right">Jumlah</th>
-          <th class="px-4 py-3 text-left">Catatan</th>
-          <th class="px-4 py-3 text-center">Aksi</th>
+          <th class="px-2 sm:px-4 py-2 sm:py-3 text-left">Tanggal</th>
+          <th class="px-2 sm:px-4 py-2 sm:py-3 text-left">Jenis</th>
+          <th class="px-2 sm:px-4 py-2 sm:py-3 text-left">Kategori</th>
+          <th class="px-2 sm:px-4 py-2 sm:py-3 text-right">Jumlah</th>
+          <th class="hidden sm:table-cell px-2 sm:px-4 py-2 sm:py-3 text-left">Catatan</th>
+          <th class="px-2 sm:px-4 py-2 sm:py-3 text-center">Aksi</th>
         </tr>
       </thead>
 
       <tbody>
         {% for t in transactions %}
         <tr class="border-t hover:bg-slate-50">
-          <td class="px-4 py-3">{{ t.date }}</td>
+          <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{{ t.date }}</td>
 
-          <td class="px-4 py-3">
+          <td class="px-2 sm:px-4 py-2 sm:py-3">
             {% if t.type == "income" %}
-            <span class="text-green-600 font-medium">Income</span>
+            <span class="text-green-600 font-medium text-xs sm:text-sm">Income</span>
             {% else %}
-            <span class="text-red-600 font-medium">Expense</span>
+            <span class="text-red-600 font-medium text-xs sm:text-sm">Expense</span>
             {% endif %}
           </td>
 
-          <td class="px-4 py-3">{{ t.category|default:"-" }}</td>
+          <td class="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">{{ t.category|default:"-" }}</td>
 
-          <td class="px-4 py-3 text-right font-medium">
+          <td class="px-2 sm:px-4 py-2 sm:py-3 text-right font-medium text-xs sm:text-sm">
             Rp {{ t.amount|intcomma }}
           </td>
 
-          <td class="px-4 py-3 text-slate-500">{{ t.note|default:"-" }}</td>
-          <td class="px-4 py-3 text-center space-x-2">
+          <td class="hidden sm:table-cell px-2 sm:px-4 py-2 sm:py-3 text-slate-500 text-xs sm:text-sm">{{ t.note|default:"-" }}</td>
+          <td class="px-2 sm:px-4 py-2 sm:py-3 text-center space-x-1 sm:space-x-2">
             <a
               href="{% url 'app:edit' t.id %}"
-              class="text-blue-600 hover:text-blue-800"
+              class="text-blue-600 hover:text-blue-800 text-sm sm:text-base"
               >✏️</a
             >
             <a
               href="{% url 'app:delete' t.id %}"
               onclick="return confirm('Hapus transaksi ini?')"
-              class="text-red-600 hover:text-red-800"
+              class="text-red-600 hover:text-red-800 text-sm sm:text-base"
               >🗑</a
             >
           </td>
         </tr>
         {% empty %}
         <tr>
-          <td colspan="6" class="py-8 text-center text-slate-400">
+          <td colspan="6" class="py-6 sm:py-8 text-center text-slate-400 text-xs sm:text-sm">
             Belum ada transaksi. Mulai dengan menambahkan transaksi baru!
           </td>
         </tr>

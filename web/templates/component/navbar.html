@@ -1,32 +1,81 @@
-<nav class="fixed top-0 left-0 w-full z-50 bg-white/50 backdrop-blur shadow-md">
+<nav class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur shadow-md">
   <div class="max-w-6xl mx-auto px-4 py-4">
     <div class="flex justify-between items-center">
-      <a href="{% url 'home' %}" class="text-2xl font-bold text-slate-800">
+      <a href="{% url 'home' %}" class="text-xl sm:text-2xl font-bold text-slate-800">
         MaKu 💰
       </a>
 
-      <div class="flex space-x-6">
+      <!-- Desktop Menu -->
+      <div class="hidden sm:flex space-x-6">
         <a
           href="{% url 'home' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium">
+          class="text-slate-600 hover:text-slate-900 font-medium transition">
           Home
         </a>
         <a
           href="{% url 'app:app' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium">
+          class="text-slate-600 hover:text-slate-900 font-medium transition">
           App
         </a>
         <a
           href="{% url 'contact' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium">
+          class="text-slate-600 hover:text-slate-900 font-medium transition">
           Contact
         </a>
         <a
           href="{% url 'gallery' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium">
+          class="text-slate-600 hover:text-slate-900 font-medium transition">
           Gallery
         </a>
       </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="menuBtn" class="sm:hidden p-2 rounded-lg hover:bg-slate-100 transition">
+        <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden sm:hidden mt-4 pb-4 space-y-3 border-t border-slate-200 pt-4">
+      <a
+        href="{% url 'home' %}"
+        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
+        Home
+      </a>
+      <a
+        href="{% url 'app:app' %}"
+        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
+        App
+      </a>
+      <a
+        href="{% url 'contact' %}"
+        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
+        Contact
+      </a>
+      <a
+        href="{% url 'gallery' %}"
+        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
+        Gallery
+      </a>
     </div>
   </div>
 </nav>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking a link
+  const menuLinks = mobileMenu.querySelectorAll('a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>

@@ -1,108 +1,209 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+{% block content %}
 
-<!-- HERO CAROUSEL -->
-<section class="relative overflow-hidden py-20">
-  <div id="carousel" class="relative max-w-4xl mx-auto">
-    <!-- SLIDES -->
-    <div class="carousel-slide text-center transition-opacity duration-700">
-      <h1 class="text-5xl font-bold text-slate-900 mb-4">
-        Personal Finance Tracker
-      </h1>
-      <p class="text-xl text-slate-600 mb-8">
-        Kelola keuangan pribadi Anda dengan mudah dan efisien
-      </p>
-    </div>
+<!-- ================= HERO ================= -->
+<section class="relative from-blue-50 to-white py-24">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight animate-fade-in-down">
+      Mahasiswa Keuangan
+    </h1>
+    <p class="mt-5 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto animate-fade-in">
+      Kelola income dan expense Anda dengan cara yang simpel, cepat, dan aman.
+    </p>
 
-    <div
-      class="carousel-slide text-center hidden transition-opacity duration-700">
-      <h1 class="text-5xl font-bold text-slate-900 mb-4">
-        Catat Income & Expense
-      </h1>
-      <p class="text-xl text-slate-600 mb-8">
-        Semua transaksi tercatat rapi dan aman
-      </p>
-    </div>
-
-    <div
-      class="carousel-slide text-center hidden transition-opacity duration-700">
-      <h1 class="text-5xl font-bold text-slate-900 mb-4">
-        Laporan Keuangan Otomatis
-      </h1>
-      <p class="text-xl text-slate-600 mb-8">
-        Pantau kondisi keuangan kapan saja
-      </p>
-    </div>
-
-    <!-- BUTTON -->
-    <div class="mt-10 space-x-4 text-center">
+    <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up">
       <a
         href="{% url 'app:app' %}"
-        class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 font-medium">
+        class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition">
         Mulai Sekarang
       </a>
       <a
         href="{% url 'contact' %}"
-        class="inline-block bg-slate-300 text-slate-900 px-8 py-3 rounded-lg hover:bg-slate-400 font-medium">
+        class="bg-white border border-slate-300 text-slate-900 px-8 py-3 rounded-xl font-semibold hover:bg-slate-100 transition">
         Hubungi Kami
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- DOTS -->
-    <div class="flex justify-center mt-8 space-x-2">
-      <button class="dot w-3 h-3 rounded-full bg-blue-600"></button>
-      <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
-      <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+<!-- ================= FEATURES ================= -->
+<section class="py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-slate-900 mb-14 animate-fade-in-down">
+      Fitur Utama
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition animate-fade-in-down">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-100 text-2xl mb-4">📊</div>
+        <h3 class="text-xl font-semibold mb-2">Tracking Transaksi</h3>
+        <p class="text-slate-600 text-sm">
+          Catat semua income dan expense dengan kategori yang jelas dan rapi.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition animate-fade-in-down">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-green-100 text-2xl mb-4">📈</div>
+        <h3 class="text-xl font-semibold mb-2">Laporan Otomatis</h3>
+        <p class="text-slate-600 text-sm">
+          Ringkasan keuangan langsung siap tanpa hitung manual.
+        </p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition animate-fade-in-down">
+        <div class="w-12 h-12 flex items-center justify-center rounded-xl bg-yellow-100 text-2xl mb-4">⚡</div>
+        <h3 class="text-xl font-semibold mb-2">Cepat & Responsif</h3>
+        <p class="text-slate-600 text-sm">
+          Interface ringan dan nyaman di desktop maupun mobile.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES SECTION -->
-<section class="py-12">
-  <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">
-    Fitur Utama
-  </h2>
+<!-- ================= HOW TO USE ================= -->
+<section class="py-10">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-8 text-center animate-fade-in-down">
+      🚀 Cara Setup & Menggunakan
+    </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <!-- Feature 1 -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <div class="text-4xl mb-4">📊</div>
-      <h3 class="text-xl font-bold text-slate-900 mb-2">Tracking Transaksi</h3>
-      <p class="text-slate-600">
-        Catat setiap transaksi income dan expense dengan kategori yang lengkap.
-      </p>
+    <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 animate-fade-in-up">
+      <!-- Step 1 -->
+      <div class="mb-8 pb-8 border-b border-slate-200">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-blue-600 text-white font-bold text-sm sm:text-base">
+              1
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">Clone Repository</h3>
+            <p class="text-slate-600 mb-3 text-xs sm:text-sm">Clone project MaKu ke mesin lokal Anda:</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-4 overflow-x-auto">
+              <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words">git clone {{ REPO_URL }}.git
+cd maku</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="mb-8 pb-8 border-b border-slate-200">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-blue-600 text-white font-bold text-sm sm:text-base">
+              2
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">Setup Virtual Environment</h3>
+            <p class="text-slate-600 mb-3 text-xs sm:text-sm">(Opsional tapi disarankan)</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-4 overflow-x-auto">
+              <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words">python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="mb-8 pb-8 border-b border-slate-200">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-blue-600 text-white font-bold text-sm sm:text-base">
+              3
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">Install Dependencies</h3>
+            <p class="text-slate-600 mb-3 text-xs sm:text-sm">Install semua package yang diperlukan:</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-4 overflow-x-auto">
+              <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words">pip3 install -r req.txt</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="mb-8 pb-8 border-b border-slate-200">
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-blue-600 text-white font-bold text-sm sm:text-base">
+              4
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">Jalankan Aplikasi</h3>
+            <p class="text-slate-600 mb-3 text-xs sm:text-sm">Pilih salah satu untuk menjalankan aplikasi:</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-4 overflow-x-auto">
+              <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words">python3 maku.py web    # Jalankan web interface
+python3 maku.py cli    # Jalankan CLI interface</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div>
+        <div class="flex gap-4">
+          <div class="flex-shrink-0">
+            <div class="flex items-center justify-center h-10 w-10 rounded-lg bg-blue-600 text-white font-bold text-sm sm:text-base">
+              5
+            </div>
+          </div>
+          <div class="flex-1 min-w-0">
+            <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-2">Konfigurasi (Opsional)</h3>
+            <p class="text-slate-600 mb-3 text-xs sm:text-sm">Edit file <code class="bg-slate-100 px-2 py-0.5 rounded text-xs sm:text-sm inline">config.cfg</code> sesuai kebutuhan:</p>
+            <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 sm:p-4 overflow-x-auto">
+              <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words"># Global configuration
+FILE_EXCEL = _data/saku_data.xlsx
+EXPORT_DIR = _exports
+
+# Web server
+HOST = 0.0.0.0
+PORT = 8000</code>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Feature 2 -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <div class="text-4xl mb-4">📈</div>
-      <h3 class="text-xl font-bold text-slate-900 mb-2">Laporan Terperinci</h3>
-      <p class="text-slate-600">
-        Lihat ringkasan keuangan dan export data transaksi dalam berbagai
-        format.
-      </p>
-    </div>
-
-    <!-- Feature 3 -->
-    <div class="bg-white rounded-xl shadow p-6">
-      <div class="text-4xl mb-4">⚡</div>
-      <h3 class="text-xl font-bold text-slate-900 mb-2">Cepat & Mudah</h3>
-      <p class="text-slate-600">
-        Interface yang simpel dan responsif di semua perangkat Anda.
+    <!-- Quick Start -->
+    <div class="mt-8 bg-green-50 border-2 border-green-200 rounded-xl p-6 sm:p-8 animate-fade-in-down">
+      <h3 class="text-base sm:text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
+        <span>⚡</span> Quick Start
+      </h3>
+      <div class="bg-white rounded-lg p-4 overflow-x-auto border border-green-100">
+        <code class="text-xs sm:text-sm text-slate-800 font-mono whitespace-pre-wrap break-words">git clone {{ REPO_URL }}.git
+cd maku
+python3 -m venv venv
+source venv/bin/activate
+pip3 install -r req.txt
+python3 maku.py web</code>
+      </div>
+      <p class="text-xs sm:text-sm text-green-800 mt-4">
+        ✅ Aplikasi akan berjalan di <code class="bg-green-100 px-2 py-0.5 rounded text-xs sm:text-sm inline">http://localhost:8000</code>
       </p>
     </div>
   </div>
 </section>
 
-<!-- CTA SECTION -->
-<section class="bg-blue-600 text-white rounded-xl p-12 text-center">
-  <h2 class="text-3xl font-bold mb-4">Siap Mengelola Keuangan Anda?</h2>
-  <p class="text-lg mb-6">
-    Akses aplikasi sekarang dan mulai mencatat transaksi Anda hari ini.
-  </p>
-  <a
-    href="{% url 'app:app' %}"
-    class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-slate-100 font-bold">
-    Buka Aplikasi
-  </a>
+<!-- ================= CTA ================= -->
+<section class="my-4 px-4">
+  <div class="max-w-6xl mx-auto bg-blue-600 rounded-3xl py-16 text-center text-white animate-fade-in-down">
+    <h2 class="text-3xl font-bold mb-4">
+      Siap Mengelola Keuangan Anda?
+    </h2>
+    <p class="text-lg mb-8">
+      Mulai catat transaksi dan pantau keuangan Anda sekarang.
+    </p>
+    <a
+      href="{% url 'app:app' %}"
+      class="inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-slate-100 transition">
+      Buka Aplikasi
+    </a>
+  </div>
 </section>
+
 {% endblock %}

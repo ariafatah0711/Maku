@@ -41,9 +41,7 @@ python3 maku.py web
 - buka config.cfg, dan sesuaikan config
 ```INI
 # Global configuration file
-FILE_CSV = _data/saku_data.csv
 FILE_EXCEL = _data/saku_data.xlsx
-MODE = excel # Options: csv, excel
 EXPORT_DIR = _exports # Directory for exported files
 
 # Web server configuration
