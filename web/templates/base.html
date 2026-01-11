@@ -1,26 +1,51 @@
-{% load static %}
-{% load humanize %}
+{% load static %} {% load humanize %}
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>{% block title %}MaKu{% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{% static 'favicon.png' %}">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% block head %}{% endblock %}
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}MaKu{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{% static 'favicon.png' %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% block head %}{% endblock %}
+  </head>
 
-<body class="bg-slate-100 min-h-screen">
-  {% include 'component/navbar.html' %}
+  <body class="bg-slate-100 min-h-screen">
+    {% include 'component/navbar.html' %}
 
-  <main class="py-10">
-    <div class="max-w-6xl mx-auto px-4">
-      {% block content %}{% endblock %}
-    </div>
-  </main>
+    <main class="pt-24 py-10">
+      <div class="max-w-6xl mx-auto px-4">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
 
-  {% block scripts %}{% endblock %}
-</body>
+    {% block scripts %}
+    <script>
+      const slides = document.querySelectorAll(".carousel-slide");
+      const dots = document.querySelectorAll(".dot");
+      let current = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("hidden", i !== index);
+          dots[i].classList.toggle("bg-blue-600", i === index);
+          dots[i].classList.toggle("bg-slate-300", i !== index);
+        });
+      }
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          current = index;
+          showSlide(current);
+        });
+      });
+
+      setInterval(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }, 4000);
+    </script>
+    {% endblock %}
+  </body>
 </html>

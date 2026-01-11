@@ -1,47 +1,94 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block title %}Home - MaKu{% endblock %}
+<!-- HERO CAROUSEL -->
+<section class="relative overflow-hidden py-20">
+  <div id="carousel" class="relative max-w-4xl mx-auto">
+    <!-- SLIDES -->
+    <div class="carousel-slide text-center transition-opacity duration-700">
+      <h1 class="text-5xl font-bold text-slate-900 mb-4">
+        Personal Finance Tracker
+      </h1>
+      <p class="text-xl text-slate-600 mb-8">
+        Kelola keuangan pribadi Anda dengan mudah dan efisien
+      </p>
+    </div>
 
-{% block content %}
+    <div
+      class="carousel-slide text-center hidden transition-opacity duration-700">
+      <h1 class="text-5xl font-bold text-slate-900 mb-4">
+        Catat Income & Expense
+      </h1>
+      <p class="text-xl text-slate-600 mb-8">
+        Semua transaksi tercatat rapi dan aman
+      </p>
+    </div>
 
-<!-- HERO SECTION -->
-<section class="text-center py-16">
-  <h1 class="text-5xl font-bold text-slate-900 mb-4">Personal Finance Tracker</h1>
-  <p class="text-xl text-slate-600 mb-8">Kelola keuangan pribadi Anda dengan mudah dan efisien</p>
-  <div class="space-x-4">
-    <a href="{% url 'app:app' %}" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 font-medium">
-      Mulai Sekarang
-    </a>
-    <a href="{% url 'contact' %}" class="inline-block bg-slate-300 text-slate-900 px-8 py-3 rounded-lg hover:bg-slate-400 font-medium">
-      Hubungi Kami
-    </a>
+    <div
+      class="carousel-slide text-center hidden transition-opacity duration-700">
+      <h1 class="text-5xl font-bold text-slate-900 mb-4">
+        Laporan Keuangan Otomatis
+      </h1>
+      <p class="text-xl text-slate-600 mb-8">
+        Pantau kondisi keuangan kapan saja
+      </p>
+    </div>
+
+    <!-- BUTTON -->
+    <div class="mt-10 space-x-4 text-center">
+      <a
+        href="{% url 'app:app' %}"
+        class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 font-medium">
+        Mulai Sekarang
+      </a>
+      <a
+        href="{% url 'contact' %}"
+        class="inline-block bg-slate-300 text-slate-900 px-8 py-3 rounded-lg hover:bg-slate-400 font-medium">
+        Hubungi Kami
+      </a>
+    </div>
+
+    <!-- DOTS -->
+    <div class="flex justify-center mt-8 space-x-2">
+      <button class="dot w-3 h-3 rounded-full bg-blue-600"></button>
+      <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+      <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+    </div>
   </div>
 </section>
 
 <!-- FEATURES SECTION -->
 <section class="py-12">
-  <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">Fitur Utama</h2>
+  <h2 class="text-3xl font-bold text-slate-900 mb-8 text-center">
+    Fitur Utama
+  </h2>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Feature 1 -->
     <div class="bg-white rounded-xl shadow p-6">
       <div class="text-4xl mb-4">📊</div>
       <h3 class="text-xl font-bold text-slate-900 mb-2">Tracking Transaksi</h3>
-      <p class="text-slate-600">Catat setiap transaksi income dan expense dengan kategori yang lengkap.</p>
+      <p class="text-slate-600">
+        Catat setiap transaksi income dan expense dengan kategori yang lengkap.
+      </p>
     </div>
 
     <!-- Feature 2 -->
     <div class="bg-white rounded-xl shadow p-6">
       <div class="text-4xl mb-4">📈</div>
       <h3 class="text-xl font-bold text-slate-900 mb-2">Laporan Terperinci</h3>
-      <p class="text-slate-600">Lihat ringkasan keuangan dan export data transaksi dalam berbagai format.</p>
+      <p class="text-slate-600">
+        Lihat ringkasan keuangan dan export data transaksi dalam berbagai
+        format.
+      </p>
     </div>
 
     <!-- Feature 3 -->
     <div class="bg-white rounded-xl shadow p-6">
       <div class="text-4xl mb-4">⚡</div>
       <h3 class="text-xl font-bold text-slate-900 mb-2">Cepat & Mudah</h3>
-      <p class="text-slate-600">Interface yang simpel dan responsif di semua perangkat Anda.</p>
+      <p class="text-slate-600">
+        Interface yang simpel dan responsif di semua perangkat Anda.
+      </p>
     </div>
   </div>
 </section>
@@ -49,10 +96,13 @@
 <!-- CTA SECTION -->
 <section class="bg-blue-600 text-white rounded-xl p-12 text-center">
   <h2 class="text-3xl font-bold mb-4">Siap Mengelola Keuangan Anda?</h2>
-  <p class="text-lg mb-6">Akses aplikasi sekarang dan mulai mencatat transaksi Anda hari ini.</p>
-  <a href="{% url 'app:app' %}" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-slate-100 font-bold">
+  <p class="text-lg mb-6">
+    Akses aplikasi sekarang dan mulai mencatat transaksi Anda hari ini.
+  </p>
+  <a
+    href="{% url 'app:app' %}"
+    class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-slate-100 font-bold">
     Buka Aplikasi
   </a>
 </section>
-
 {% endblock %}
