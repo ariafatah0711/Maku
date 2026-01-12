@@ -52,10 +52,18 @@ PORT = 8000 # Server port
 ```
 
 ## how to setup (Production)
+- jangan lupa ubah ALLOWED_HOSTS di web/web/config/settings.py menjadi ```ALLOWED_HOSTS = ["*"]```
+
+gunakan gunicorn (masih ada bug di static file ketika di deploy pake gunicorn)
 ```bash
 pip3 install gunicorn
 gunicorn web.config.wsgi:application --bind 0.0.0.0:20000
 # masih ada bug di static file ketika di deploy pake gunicorn
+```
+atau gunakan nohup (no hangup)
+```bash
+nohup python3 maku.py web > runserver.log 2>&1 &
+nohup python3 web/manage.py runserver 0.0.0.0:20001 > runserver.log 2>&1 &
 ```
 
 <details>
