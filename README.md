@@ -15,7 +15,7 @@ Maku adalah aplikasi manajemen keuangan yang dirancang khusus untuk mahasiswa un
 - Nama: ZIKRA MAHKOTA HASAN
   Nim : 0
 
-## how to setup
+## how to setup (Development)
 1. Clone repository ini ke lokal mesin Anda.
 ```bash
 git clone https://github.com/<username>/<repository>.git
@@ -49,6 +49,13 @@ EXPORT_DIR = _exports # Directory for exported files
 # Web server configuration
 HOST = 0.0.0.0 # Server host
 PORT = 8000 # Server port
+```
+
+## how to setup (Production)
+```bash
+pip3 install gunicorn
+gunicorn web.config.wsgi:application --bind 0.0.0.0:20000
+# masih ada bug di static file ketika di deploy pake gunicorn
 ```
 
 <details>
