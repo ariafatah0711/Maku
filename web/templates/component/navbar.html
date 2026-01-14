@@ -1,81 +1,51 @@
-<nav class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur shadow-md">
-  <div class="max-w-6xl mx-auto px-4 py-4">
-    <div class="flex justify-between items-center">
-      <a href="{% url 'home' %}" class="text-xl sm:text-2xl font-bold text-slate-800">
-        MaKu 💰
-      </a>
+<nav class="navbar navbar-expand-lg navbar-light sticky-top border-bottom border-light-subtle" style="background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px);">
+  <div class="container-lg">
+    <a href="{% url 'home' %}" class="navbar-brand fw-bold d-flex align-items-center gap-2 fs-5">
+      <span style="font-size: 1.8rem;">💰</span>
+      <span class="text-primary">MaKu</span>
+    </a>
 
-      <!-- Desktop Menu -->
-      <div class="hidden sm:flex space-x-6">
-        <a
-          href="{% url 'home' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium transition">
-          Home
-        </a>
-        <a
-          href="{% url 'app:app' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium transition">
-          App
-        </a>
-        <a
-          href="{% url 'contact' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium transition">
-          Contact
-        </a>
-        <a
-          href="{% url 'gallery' %}"
-          class="text-slate-600 hover:text-slate-900 font-medium transition">
-          Gallery
-        </a>
-      </div>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <!-- Mobile Menu Button -->
-      <button id="menuBtn" class="sm:hidden p-2 rounded-lg hover:bg-slate-100 transition">
-        <svg class="w-6 h-6 text-slate-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="hidden sm:hidden mt-4 pb-4 space-y-3 border-t border-slate-200 pt-4">
-      <a
-        href="{% url 'home' %}"
-        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
-        Home
-      </a>
-      <a
-        href="{% url 'app:app' %}"
-        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
-        App
-      </a>
-      <a
-        href="{% url 'contact' %}"
-        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
-        Contact
-      </a>
-      <a
-        href="{% url 'gallery' %}"
-        class="block text-slate-600 hover:text-slate-900 font-medium transition py-2">
-        Gallery
-      </a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-lg-3">
+        <li class="nav-item">
+          <a href="{% url 'home' %}" class="nav-link fw-500 text-secondary position-relative">
+            Home
+            <span class="position-absolute bottom-0 start-0 h-1 bg-primary" style="height: 2px; width: 0; transition: width 0.3s;"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'app:app' %}" class="nav-link fw-500 text-secondary position-relative">
+            App
+            <span class="position-absolute bottom-0 start-0 h-1 bg-primary" style="height: 2px; width: 0; transition: width 0.3s;"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'contact' %}" class="nav-link fw-500 text-secondary position-relative">
+            Contact
+            <span class="position-absolute bottom-0 start-0 h-1 bg-primary" style="height: 2px; width: 0; transition: width 0.3s;"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'gallery' %}" class="nav-link fw-500 text-secondary position-relative">
+            Gallery
+            <span class="position-absolute bottom-0 start-0 h-1 bg-primary" style="height: 2px; width: 0; transition: width 0.3s;"></span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
 
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
+<style>
+  .nav-link:hover {
+    color: #0d6efd !important;
+  }
 
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-  });
-
-  // Close menu when clicking a link
-  const menuLinks = mobileMenu.querySelectorAll('a');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.add('hidden');
-    });
-  });
-</script>
+  .nav-link:hover span {
+    width: 100% !important;
+  }
+</style>

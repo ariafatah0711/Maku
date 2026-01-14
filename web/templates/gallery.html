@@ -1,58 +1,67 @@
-{% extends "base.html" %} {% load static %} {% block content %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 
-<div
-  class="bg-gradient-to-br from-blue-50 via-slate-100 to-purple-50 min-h-screen py-8 sm:py-10">
-  <div class="max-w-6xl mx-auto px-4">
-    <!-- HEADER -->
-    <div class="text-center mb-8 sm:mb-12">
-      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 mb-2 animate-fade-in-down">
-        Gallery Kegiatan 📸
+<div class="container">
+  <!-- HEADER -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <h1 class="text-center fw-bold display-5 mb-3 animate-fade-in-down">
+        📸 Gallery Kegiatan
       </h1>
-      <p class="text-sm sm:text-base text-slate-500 animate-fade-in-down">Dokumentasi proses pengembangan project MaKu</p>
+      <p class="text-center text-muted animate-fade-in-down">
+        Dokumentasi proses pengembangan project MaKu
+      </p>
     </div>
+  </div>
 
-    <!-- GALLERY GRID -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 animate-stagger">
-      <!-- ITEM -->
-      <div
-        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition transform hover:scale-105 overflow-hidden">
+  <!-- GALLERY GRID -->
+  <div class="row g-4 animate-stagger">
+    <!-- ITEM 1 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm overflow-hidden" style="transition: all 0.3s ease;">
         <img
           src="{% static 'images/group.jpg' %}"
+          class="card-img-top"
           alt="Diskusi Tim"
-          class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition duration-300" />
-        <div class="p-3 sm:p-4">
-          <h3 class="font-semibold text-slate-800 text-sm sm:text-base">Diskusi Tim</h3>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          style="height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="card-body">
+          <h5 class="card-title fw-bold animate-slide-in-left">Diskusi Tim</h5>
+          <p class="card-text text-muted small animate-slide-in-left" style="animation-delay: 0.1s;">
             Brainstorming fitur dan konsep aplikasi
           </p>
         </div>
       </div>
+    </div>
 
-      <!-- ITEM -->
-      <div
-        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition transform hover:scale-105 overflow-hidden">
+    <!-- ITEM 2 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm overflow-hidden" style="transition: all 0.3s ease;">
         <img
           src="{% static 'images/coding.jpg' %}"
+          class="card-img-top"
           alt="Coding Session"
-          class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition duration-300" />
-        <div class="p-3 sm:p-4">
-          <h3 class="font-semibold text-slate-800 text-sm sm:text-base">Coding Session</h3>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          style="height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="card-body">
+          <h5 class="card-title fw-bold animate-slide-in-left">Coding Session</h5>
+          <p class="card-text text-muted small animate-slide-in-left" style="animation-delay: 0.1s;">
             Implementasi fitur transaksi dan UI
           </p>
         </div>
       </div>
+    </div>
 
-      <!-- ITEM -->
-      <div
-        class="group bg-white/80 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition transform hover:scale-105 overflow-hidden">
+    <!-- ITEM 3 -->
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card h-100 border-0 shadow-sm overflow-hidden" style="transition: all 0.3s ease;">
         <img
           src="{% static 'images/testing.jpg' %}"
+          class="card-img-top"
           alt="Testing Aplikasi"
-          class="w-full h-40 sm:h-48 object-cover group-hover:scale-105 transition duration-300" />
-        <div class="p-3 sm:p-4">
-          <h3 class="font-semibold text-slate-800 text-sm sm:text-base">Testing Aplikasi</h3>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">
+          style="height: 220px; object-fit: cover; transition: transform 0.3s ease;">
+        <div class="card-body">
+          <h5 class="card-title fw-bold animate-slide-in-left">Testing Aplikasi</h5>
+          <p class="card-text text-muted small animate-slide-in-left" style="animation-delay: 0.1s;">
             Uji coba fitur dan perbaikan bug
           </p>
         </div>
@@ -60,5 +69,25 @@
     </div>
   </div>
 </div>
+
+<style>
+  .card {
+    cursor: pointer;
+    border-radius: 0.75rem;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .card:hover .card-img-top {
+    transform: scale(1.05);
+  }
+
+  h1 {
+    letter-spacing: -0.02em;
+  }
+</style>
 
 {% endblock %}

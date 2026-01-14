@@ -18,8 +18,8 @@ Maku adalah aplikasi manajemen keuangan yang dirancang khusus untuk mahasiswa un
 ## how to setup (Development)
 1. Clone repository ini ke lokal mesin Anda.
 ```bash
-git clone https://github.com/<username>/<repository>.git
-cd <repository>
+git clone https://github.com/ariafatah0711/maku.git
+cd maku
 ```
 
 2. Buat virtual environment dan aktifkan. (opsional tapi disarankan)

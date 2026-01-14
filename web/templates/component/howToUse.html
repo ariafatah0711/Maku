@@ -1,0 +1,123 @@
+<section class="py-5">
+  <div class="container-lg">
+    <div class="text-center mb-5 animate-fade-in-down">
+      <h2 class="display-5 fw-bold text-dark mb-3">🚀 Panduan Setup</h2>
+      <p class="fs-5 text-muted">Ikuti langkah-langkah mudah di bawah ini</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <!-- Accordion -->
+        <div class="accordion animate-fade-in-up" id="setupAccordion">
+          <!-- Step 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#step1" aria-expanded="true" aria-controls="step1">
+                <span class="badge bg-primary me-3">1</span> Clone Repository
+              </button>
+            </h2>
+            <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#setupAccordion">
+              <div class="accordion-body">
+                <p class="text-muted mb-3">Clone project MaKu ke komputer Anda</p>
+                <div class="bg-dark text-light rounded-2 p-3" style="overflow-x: auto;">
+                  <pre class="mb-0"><code class="rounded text-white small">git clone {{ REPO_URL }}.git
+cd maku</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2" aria-expanded="false" aria-controls="step2">
+                <span class="badge bg-success me-3">2</span> Setup Virtual Environment
+              </button>
+            </h2>
+            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
+              <div class="accordion-body">
+                <p class="text-muted mb-3">(Opsional tapi sangat disarankan)</p>
+                <div class="bg-dark text-light rounded-2 p-3" style="overflow-x: auto;">
+                   <pre class="mb-0"><code class="rounded text-white small">python3 -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3" aria-expanded="false" aria-controls="step3">
+                <span class="badge bg-info me-3">3</span> Install Dependencies
+              </button>
+            </h2>
+            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
+              <div class="accordion-body">
+                <p class="text-muted mb-3">Install semua package yang diperlukan</p>
+                <div class="bg-dark text-light rounded-2 p-3" style="overflow-x: auto;">
+                   <pre class="mb-0"><code class="rounded text-white small">pip3 install -r req.txt</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4" aria-expanded="false" aria-controls="step4">
+                <span class="badge bg-warning me-3">4</span> Jalankan Aplikasi
+              </button>
+            </h2>
+            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
+              <div class="accordion-body">
+                <p class="text-muted mb-3">Pilih salah satu interface untuk dijalankan</p>
+                <div class="bg-dark text-light rounded-2 p-3" style="overflow-x: auto;">
+                   <pre class="mb-0"><code class="rounded text-white small">python3 maku.py web    # Web interface
+python3 maku.py cli    # CLI interface</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step5" aria-expanded="false" aria-controls="step5">
+                <span class="badge bg-danger me-3">5</span> Konfigurasi (Opsional)
+              </button>
+            </h2>
+            <div id="step5" class="accordion-collapse collapse" data-bs-parent="#setupAccordion">
+              <div class="accordion-body">
+                <p class="text-muted mb-3">Edit file <code class="bg-light px-2 py-1 rounded text-danger small">config.cfg</code> sesuai kebutuhan</p>
+                <div class="bg-dark text-light rounded-2 p-3" style="overflow-x: auto;">
+                   <pre class="mb-0"><code class="rounded text-white small"># Global configuration
+FILE_EXCEL = _data/saku_data.xlsx
+EXPORT_DIR = _exports
+
+# Web server
+HOST = 0.0.0.0
+PORT = 8000</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+
+
+    .accordion-body {
+      background-color: #fafbfc;
+    }
+
+    .accordion-item {
+      /* margin-bottom: 0.5rem; */
+      /* border-radius: 0.5rem; */
+      overflow: hidden;
+    }
+  </style>
+</section>

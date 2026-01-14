@@ -6,7 +6,8 @@
     <title>{% block title %}MaKu{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{% static 'favicon.png' %}" />
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <style>
       @keyframes fadeInDown {
         from {
@@ -98,12 +99,15 @@
     {% block head %}{% endblock %}
   </head>
 
-  <body class="bg-slate-100 min-h-screen">
+  <body class="bg-light" style="min-height: 100vh;">
     {% include 'component/navbar.html' %}
 
-    <main class="pt-20 sm:pt-24 py-6 sm:py-10">
-      <div class="max-w-6xl mx-auto px-4">
+    <main class="py-4 py-sm-5">
+      <div class="container-lg">
         {% block content %}{% endblock %}
+
+        <!-- ================= FOOTER ================= -->
+        {% include 'component/footer.html' %}
       </div>
     </main>
 
@@ -116,8 +120,8 @@
       function showSlide(index) {
         slides.forEach((slide, i) => {
           slide.classList.toggle("hidden", i !== index);
-          dots[i].classList.toggle("bg-blue-600", i === index);
-          dots[i].classList.toggle("bg-slate-300", i !== index);
+          dots[i].classList.toggle("bg-primary", i === index);
+          dots[i].classList.toggle("bg-secondary", i !== index);
         });
       }
 
@@ -133,6 +137,7 @@
         showSlide(current);
       }, 4000);
     </script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
     {% endblock %}
   </body>
 </html>

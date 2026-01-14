@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import FileResponse, Http404
 from core import TransactionLogic, ReadAllConfig
+from datetime import datetime
 import os
 
 CONFIG = ReadAllConfig()
@@ -9,6 +10,19 @@ export_dir = str(CONFIG.get("EXPORT_DIR", "exports"))
 
 def get_logic():
     return TransactionLogic(file_path, "excel")
+
+def format_transaction(transaction):
+    """Format transaction data for display"""
+    try:
+        # Try to parse date if it's a string
+        if isinstance(transaction.date, str):
+            date_obj = datetime.strptime(transaction.date, '%Y-%m-%d')
+            transaction.date_formatted = date_obj.strftime('%d %b %Y')
+        else:
+            transaction.date_formatted = transaction.date.strftime('%d %b %Y')
+    except:
+        transaction.date_formatted = transaction.date
+    return transaction
 
 def app(request):
     logic = get_logic()
@@ -23,7 +37,7 @@ def app(request):
         )
         return redirect("app:app")
 
-    transactions = list(reversed(logic.list_transactions()))
+    transactions = [format_transaction(t) for t in reversed(logic.list_transactions())]
     totals = logic.get_totals()
     return render(request, "app.html", {"transactions": transactions, "totals": totals})
 
@@ -33,7 +47,8 @@ def export_transactions(request):
     try:
         export_path = logic.export_transactions(export_dir)
     except Exception as e:
-        return render(request, "app/app.html", {"transactions": logic.list_transactions(), "error": str(e)})
+        transactions = [format_transaction(t) for t in reversed(logic.list_transactions())]
+        return render(request, "app.html", {"transactions": transactions, "totals": logic.get_totals(), "error": str(e)})
 
     if os.path.exists(export_path):
         try:
