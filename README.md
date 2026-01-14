@@ -28,7 +28,7 @@ python3 -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```
 
-3. Install dependencies yang diperlukan menggunakan pip.s
+3. Install dependencies yang diperlukan menggunakan pip.
 ```bash
 pip3 install -r req.txt
 ```
@@ -52,37 +52,6 @@ PORT = 8000 # Server port
 ```
 
 ## how to setup (Production)
-- jangan lupa ubah ALLOWED_HOSTS di web/web/config/settings.py menjadi ```ALLOWED_HOSTS = ["*"]```
-
-gunakan gunicorn (masih ada bug di static file ketika di deploy pake gunicorn)
-```bash
-pip3 install gunicorn
-gunicorn web.config.wsgi:application --bind 0.0.0.0:20000
-# masih ada bug di static file ketika di deploy pake gunicorn
-```
-atau gunakan nohup (no hangup)
-```bash
-nohup python3 maku.py web > runserver.log 2>&1 &
-nohup python3 web/manage.py runserver 0.0.0.0:20001 > runserver.log 2>&1 &
-```
-
-<details>
-<summary>How to setup django</summary>
-
-```bash
-python3 -m venv venv
-.\venv\Scripts\activate
-
-python -m django startproject web
-cd web
-pip3 install django
-python3 manage.py runserver
-
-# add app
-python manage.py startapp transactions
-```
-</details>
-
 <details>
 <summary>How to Setup CPanel</summary>
 
@@ -105,8 +74,54 @@ cat << EOF > /web/web/config/wsgi.py
 EOF
 ```
 
+4. fixed static file
+```bash
+# edit settings.py
+# ubah STATIC_URL menjadi path static di cpanel
+# ---
+STATIC_ROOT = "/home/ariamyid/public_html/static/"
+# ---
+
+python3 web/manage.py collectstatic
+```
+
 4. restart aplikasi di cpanel
 
+</details>
+
+<details>
+<summary>How to Setup in VPS</summary>
+
+- jangan lupa ubah ALLOWED_HOSTS di web/web/config/settings.py menjadi ```ALLOWED_HOSTS = ["*"]```
+
+gunakan gunicorn (masih ada bug di static file ketika di deploy pake gunicorn)
+```bash
+pip3 install gunicorn
+gunicorn web.config.wsgi:application --bind 0.0.0.0:20000
+# masih ada bug di static file ketika di deploy pake gunicorn
+```
+atau gunakan nohup (no hangup)
+```bash
+nohup python3 maku.py web > runserver.log 2>&1 &
+nohup python3 web/manage.py runserver 0.0.0.0:20001 > runserver.log 2>&1 &
+```
+</details>
+
+<details>
+<summary>How to setup django</summary>
+
+```bash
+python3 -m venv venv
+.\venv\Scripts\activate
+
+python -m django startproject web
+cd web
+pip3 install django
+python3 manage.py runserver
+
+# add app
+python manage.py startapp transactions
+```
 </details>
 
 ---

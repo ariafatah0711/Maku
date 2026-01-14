@@ -5,7 +5,7 @@ def _site_context():
     return {
         "REPO_URL": "https://github.com/ariafatah0711/maku",
         "REPO_NAME": "ariafatah0711/maku",
-        "LIVE_DEMO_URL": "http://s1.ariaf.my.id:20000",
+        "LIVE_DEMO_URL": "https://aria.my.id/maku/",
     }
 
 

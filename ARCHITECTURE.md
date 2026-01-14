@@ -72,6 +72,7 @@ Maku/
 │   │
 │   └── static/
 │       ├── css/
+│       ├── bootstrap/
 │       └── images/
 │
 ├── _data/
